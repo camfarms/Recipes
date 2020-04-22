@@ -3,6 +3,5 @@ BEGIN{
 
 	printf "Enter Search Query"
 	getline query < "-"
-	print query
-	print 'usersearch' query > searchquery.txt
+	print query  > "tempFile"
 }
