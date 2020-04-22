@@ -8,14 +8,31 @@ import spoonacular as sp
 api = sp.API("your_api_key_here")
 
 
+#id is a number
+def getrecipeinformation(ID):
+    recipeInfo = api.analyze_recipe_instructions(ID, False)
+    return recipeInfo.json()
+
+def getrandomfoodjoke():
+    foodJoke = api.get_a_random_food_joke()
+    return foodJoke.json()
+
+#tas refers to like desserts or vegetarian... Multiple seperate by comma String
+def getrandomrecipes(tags, numRecipes):
+    randomRecipe = api.get_a_random_food_joke(True, tags, numRecipes)
+    return randomRecipe.json()
+
+def searchrecipes(query):
+    searchResults = api.search_recipes(query)
+    return searchResults.json() 
+
 def searchrecipesbyingredients(ingredients, fillIngredients=None, 
                               limitLicense=None, number=None, ranking=None ):
     searchResults = api.search_recipes_by_ingredients(ingredients, fillIngredients=None, 
-                limitLicense=None, number=None, ranking=None )
-    data = searchResults.json()
-    return data
-    
+                limitLicense=None, number=None, ranking=None)
+    return searchResults.json() 
 
-def getfoodjoke():
-    foodJoke = api.get_a_random_food_joke()
-    return foodJoke.json()
+#id is a number
+def summarizerecipe(ID):
+    searchResults = api.summarize.recipes(ID)
+    return searchResults.json() 
