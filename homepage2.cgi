@@ -102,43 +102,43 @@ BEGIN{
 	print "  span.psw {
 	print "     display: block;
 	print "     float: none;
-print "  }
-print "  .cancelbtn {
-print "     width: 100%;
-print "  }
-print "}
-print "</style>
-print "</head>
-print "<body>
-print "
-print "<h2>Welcome!</h2>
-print "  <div class="container" style="background-color:#f1f1f1">
-print "    <button type="button" class="btn">Find New Recipe</button>
-print "    <button type="button" class="btn">Add Recipe</button>
-print "    <button type="button" class="btn">Get Recipe from Ingredits</button>
-print "    <button type="button" class="btn">Your Recipes</button>
-print "    <button type="button" class="btn">Random Recipe</button>
-print "
-print "    <div class="dropdown">
-print "    <button class="dropbtn">Cuisines</button>
-print "      <div class="dropdown-content">
-print "        <a href="#">African</a>
-print "        <a href="#">American</a>
-print "        <a href="#">British</a>
-print "        <a href="#">Cajun</a>
-print "        <a href="#">Caribbean</a>
-print "        <a href="#">Chinese</a>
-print "        <a href="#">Eastern</a>
-print "        <a href="#">European</a>
-print "        <a href="#">French</a>
-print "        <a href="#">German</a>
-print "        <a href="#">Greek</a>
-print "        <a href="#">Indian</a>
-print "        <a href="#">Irish</a>
-print "        <a href="#">Italian</a>
-print "        <a href="#">Japanese</a>
-print "        <a href="#">Jewish</a>
-print "        <a href="#">Korean</a>
+	print "  }
+	print "  .cancelbtn {
+	print "     width: 100%;
+	print "  }
+	print "}
+	print "</style>
+	print "</head>
+	print "<body>
+	print "
+	print "<h2>Welcome!</h2>
+	print "  <div class="container" style="background-color:#f1f1f1">
+	print "    <button type="button" class="btn">Find New Recipe</button>
+	print "    <button type="button" class="btn">Add Recipe</button>
+	print "    <button type="button" class="btn">Get Recipe from Ingredits</button>
+	print "    <button type="button" class="btn">Your Recipes</button>
+	print "    <button type="button" class="btn">Random Recipe</button>
+	print "
+	print "    <div class="dropdown">
+	print "    <button class="dropbtn">Cuisines</button>
+	print "      <div class="dropdown-content">
+	print "        <a href="#">African</a>
+	print "        <a href="#">American</a>
+	print "        <a href="#">British</a>
+	print "        <a href="#">Cajun</a>
+	print "        <a href="#">Caribbean</a>
+	print "        <a href="#">Chinese</a>
+	print "        <a href="#">Eastern</a>
+	print "        <a href="#">European</a>
+	print "        <a href="#">French</a>
+	print "        <a href="#">German</a>
+	print "        <a href="#">Greek</a>
+	print "        <a href="#">Indian</a>
+	print "        <a href="#">Irish</a>
+	print "        <a href="#">Italian</a>
+	print "        <a href="#">Japanese</a>
+	print "        <a href="#">Jewish</a>
+	print "        <a href="#">Korean</a>
 	print "        <a href="#">Latin American</a>
 	print "        <a href="#">Mediterranean</a>
 	print "        <a href="#">Mexican</a>
@@ -154,3 +154,5 @@ print "        <a href="#">Korean</a>
 	print "  </div>
 	print "</body>
 	print "</html>
+	
+}
