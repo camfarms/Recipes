@@ -52,7 +52,7 @@
   
   <script>
 
-var APIKEY = '2601e4f502e84fcf89b7b4b3dc7a142f';
+var APIKEY = '';
 $(document).ready(function () {
   function getsource(id){
       $.ajax({
@@ -67,6 +67,7 @@ $(document).ready(function () {
   }
     $("#buttonsearch").click(function(){
         alert("got to the method");
+        var z = $("#search").val();
         $.ajax({
             type: "GET",
             url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=1&query="+ $("#search").val(),
