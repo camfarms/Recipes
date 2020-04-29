@@ -3,13 +3,14 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="detup.js"></script>
+<!--script src="detup.js"></script> -->
 </head>
 <body>
 
 <h2>Let's get Cooking!</h2>
   <div class="container" style="background-color:#f1f1f1">
-    <input id = "search"></input> <button id="buttonsearch"> Search</button>
+    <input type="text" id = "search"></input> 
+    <button id="buttonsearch" onclick="getRecipes()"> Search</button>
     <button type="button" class="btn" id="NewRecipe">Find New Recipe</button>
     <button type="button" class="btn" id="RecipeFromIngredients">Get Recipe from Ingredients</button> 
     <button type="button" class="btn" id="RandomRecipe">Random Recipe</button>
@@ -47,38 +48,42 @@
     </div>
   </div>
   
-  <div id="recipeContainer"> </div>
+  <div id="recipeContainer"></div>
+  <div id="error">Error: </div>
   <a href="" id="sourceLink"></a>
   
   <script>
 
 var id; // recipe id
-var mashapeKey = '2601e4f502e84fcf89b7b4b3dc7a142f';
-$(document).ready(function(){
-  var settings = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0&type=main%20course&query=" + $("#search").val(),
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-		"x-rapidapi-key": "79f923e1bdmsh7538b39e153a411p1cef6djsnc5a5cf09d5b3"
-	  }
-  }
+var APIKEY = '2601e4f502e84fcf89b7b4b3dc7a142f';
+$(document).ready(function () {
+          function getsource(id){
+          $.ajax({
+              type: "GET",
+              url: "https://api.spoonacular.com/recipes/" + id + "/information?apiKey=" + APIKEY,
+              success: function(res){
+                  document.getElementById("sourceLink").innerHTML = res.sourceUrl;
+                  document.getElementById("sourceLink").href = res.sourceUrl;
 
-  $("#buttonsearch").click(function(){
-    $.ajax(settings).done(function (response) {
-      $.each(response, function(index, value){ 
-        div = document.createElement('div');
-            div.id = "Recipe" + idGraph.toString();
-            div.style = "height: 300px; width: 100%;";
-            div.class = '';
+              }
+          })
+      }
 
-        $("#recipeContainer").append(div);
-      });
+    $("#search").click(function(){
+        alert("got to the method");
+        $.ajax({
+            type: "GET",
+            url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=1&query="+ $("#search").val(),
+            success: function(res){
+                alert("got result");
+                document.getElementById("recipeContainer").innerHTML = "<h1>"+ res.results[0].title + "</h1><br><img src='" + res.baseUri + res.results[0].image + "'/> <br> ready in " + res.results[0].readyInMinutes + " minutes";
+                getsource(res.results[0].id);
+            }
+        }).fail(function(jqXHr, textStatus, errorThrown){
+          $("#error").html(jqXHr.responseText);
+        });
     }); 
   });
-});
 
   </script>
 </body>
