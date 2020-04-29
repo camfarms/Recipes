@@ -9,7 +9,7 @@
 
 <h2>Let's get Cooking!</h2>
   <div class="container" style="background-color:#f1f1f1">
-    <input id = "search"></input> <button id="buttonsearch"> Search</button>
+    <input id = "search"></input> <button id="buttonsearch">Search</button>
     <button type="button" class="btn" id="NewRecipe">Find New Recipe</button>
     <button type="button" class="btn" id="RecipeFromIngredients">Get Recipe from Ingredients</button> 
     <button type="button" class="btn" id="RandomRecipe">Random Recipe</button>
@@ -65,7 +65,7 @@ $(document).ready(function () {
           }
       });
   }
-    $("#search").click(function(){
+    $("#buttonsearch").click(function(){
         alert("got to the method");
         $.ajax({
             type: "GET",
