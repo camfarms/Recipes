@@ -9,10 +9,11 @@
 
 <h2>Let's get Cooking!</h2>
   <div class="container" style="background-color:#f1f1f1">
-    <input id = "search"></input> <button id="buttonsearch">Search</button>
+    <input type="text" id = "search" placeholder="enter keywords to find recipe"></input> 
+    <button type="button" class="btn" id="buttonsearch">Search Recipes</button>
     <button type="button" class="btn" id="NewRecipe">Find New Recipe</button>
+    <input type="text" id = "search2" placeholder="put ingredients wanted in format ingredient1,+ingredient2,+ingredi..."></input> 
     <button type="button" class="btn" id="RecipeFromIngredients">Get Recipe from Ingredients</button> 
-    <button type="button" class="btn" id="RandomRecipe">Random Recipe</button>
 
     <div class="dropdown">
     <button class="dropbtn">Cuisines</button>
@@ -48,11 +49,12 @@
   </div>
   
   <div id="recipeContainer" class="grid-container"></div>
+  <div id="error"></div>
   <a href="" id="sourceLink"></a>
-  
+
   <script>
 
-var APIKEY = 'd7e8b2ddde5249d1916c52a38e541611';
+var APIKEY = '';
 $(document).ready(function () {
   function getsource(id){
       $.ajax({
@@ -61,7 +63,6 @@ $(document).ready(function () {
           success: function(res){
               document.getElementById("sourceLink").innerHTML = res.sourceUrl;
               document.getElementById("sourceLink").href = res.sourceUrl;
-
           }
       });
   }
@@ -116,6 +117,40 @@ $(document).ready(function () {
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
           alert("failed");
+          $("#error").html(jqXHr.responseText);
+        });
+      });
+
+      $("#NewRecipe").click(function(){
+        alert("got to new recipe method");
+        $.ajax({
+            type: "GET",
+            url: "https://api.spoonacular.com/recipes/random?apiKey=" + APIKEY + "&number=1",
+            success: function(res){
+                alert("got random result");
+                div = document.createElement('div');
+                div.style = "height: 300px;";
+                div.innerHTML = "<h1>"+ res.recipes[0].title + "</h1><br><a href='"+ res.recipes[0].sourceUrl+ "'><img src='" + res.recipes[0].image + "'/></a> <br> ready in " + res.recipes[0].readyInMinutes + " minutes";
+                $("#recipeContainer").append(div);
+            }
+        }).fail(function(jqXHr, textStatus, errorThrown){
+          $("#error").html(jqXHr.responseText);
+        });
+      });
+
+      $("#RecipeFromIngredients").click(function(){
+        alert("got to recipe from ingredient method");
+        $.ajax({
+            type: "GET",
+            url: "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + APIKEY + "&ingredients=" + $("#search2").val() +"&number=1",
+            success: function(res){
+                alert("got recipe from ingredient result");
+                div = document.createElement('div');
+                div.style = "height: 300px;";
+                div.innerHTML = "<h1>"+ res[0].title + "</h1><br><img src='" + res[0].image + "'/> <br> Missed " + res[0].missedIngredientCount + " ingredients listed";
+                $("#recipeContainer").append(div);
+            }
+        }).fail(function(jqXHr, textStatus, errorThrown){
           $("#error").html(jqXHr.responseText);
         });
       });
