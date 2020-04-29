@@ -68,6 +68,7 @@ $(document).ready(function () {
             type: "GET",
             url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=8&query="+ $("#search").val(),
             success: function(res){
+              document.getElementById("recipeContainer").innerHTML="";
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -118,8 +119,9 @@ $(document).ready(function () {
       $("#cuisine").click(function(){
         $.ajax({
           type:"GET",
-          url: "https://api.spoonacular.com/recipes/search?apiKey=" + APIKEY + "&cuisine=" + $("#cuisineContent option:selected").text()+ "&number=9",
+          url: "https://api.spoonacular.com/recipes/search?apiKey=" + APIKEY + "&cuisine=" + $("#cuisineContent option:selected").text()+ "&number=8",
           success: function(res){
+            document.getElementById("recipeContainer").innerHTML="";
             document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -177,6 +179,7 @@ $(document).ready(function () {
             type: "GET",
             url: "https://api.spoonacular.com/recipes/random?apiKey=" + APIKEY + "&number=1",
             success: function(res){
+                document.getElementById("recipeContainer").innerHTML="";
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.recipes[0].title + 
@@ -229,7 +232,7 @@ $(document).ready(function () {
             type: "GET",
             url: "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + APIKEY + "&ingredients=" + $("#search2").val() +"&number=1",
             success: function(res){
-
+                document.getElementById("recipeContainer").innerHTML="";
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[0].title + 
