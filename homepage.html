@@ -51,7 +51,7 @@
 
   <script>
 
-var APIKEY = '';
+var APIKEY = '6116842851fd41eabe57d18b9b4c1571';
 $(document).ready(function () {
   function getsource(id){
       $.ajax({
@@ -64,12 +64,10 @@ $(document).ready(function () {
       });
   }
     $("#buttonsearch").click(function(){
-        alert("got to the method");
         $.ajax({
             type: "GET",
             url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=8&query="+ $("#search").val(),
             success: function(res){
-                alert("got result");
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -118,12 +116,10 @@ $(document).ready(function () {
         });
       });
       $("#cuisine").click(function(){
-        alert("We are selecting a cuisine")
         $.ajax({
           type:"GET",
           url: "https://api.spoonacular.com/recipes/search?apiKey=" + APIKEY + "&cuisine=" + $("#cuisineContent option:selected").text()+ "&number=9",
           success: function(res){
-            alert("We got the results bud");
             document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -177,12 +173,10 @@ $(document).ready(function () {
       });
 
       $("#NewRecipe").click(function(){
-        alert("got to new recipe method");
         $.ajax({
             type: "GET",
             url: "https://api.spoonacular.com/recipes/random?apiKey=" + APIKEY + "&number=1",
             success: function(res){
-                alert("got random result");
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.recipes[0].title + 
@@ -224,10 +218,6 @@ $(document).ready(function () {
                     "</h1><br><a href='" + res.recipes[7].sourceUrl + "'><img src='" + res.baseUri + res.recipes[7].image + 
                     "'/> <br> ready in " + res.recipes[7].readyInMinutes + 
                   " minutes</div>";
-                // div = document.createElement('div');
-                // div.style = "height: 300px;";
-                // div.innerHTML = "<h1>"+ res.recipes[0].title + "</h1><br><a href='"+ res.recipes[0].sourceUrl+ "'><img src='" + res.recipes[0].image + "'/></a> <br> ready in " + res.recipes[0].readyInMinutes + " minutes";
-                // $("#recipeContainer").append(div);
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
           $("#error").html(jqXHr.responseText);
@@ -235,12 +225,11 @@ $(document).ready(function () {
       });
 
       $("#RecipeFromIngredients").click(function(){
-        alert("got to recipe from ingredient method");
         $.ajax({
             type: "GET",
             url: "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + APIKEY + "&ingredients=" + $("#search2").val() +"&number=1",
             success: function(res){
-                alert("got recipe from ingredient result");
+
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[0].title + 
@@ -363,33 +352,6 @@ $(document).ready(function () {
     position: center;
   }
   
-  .dropdown {
-    position: center;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: center;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content a:hover {background-color: #ddd;}
-  
-  .dropdown:hover .dropdown-content {display: block;}
-  
-  .dropdown:hover .dropbtn {background-color: #3e8e41;}
-  
   /* Change styles for span and cancel button on extra small screens */
   @media screen and (max-width: 300px) {
     span.psw {
@@ -413,6 +375,65 @@ $(document).ready(function () {
   padding: 20px;
   font-size: 30px;
   text-align: center;
+}
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: DodgerBlue;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+  position: absolute;
+  background-color: DodgerBlue;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
 }
   </style>
 </html>
