@@ -2,120 +2,17 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-form {border: 3px solid #f1f1f1;}
-
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-}
-
-button:hover {
-  opacity: 0.8;
-}
-
-.cancelbtn {
-  width: auto;
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.btn{
-  padding: 10px 18px;
-  background-color: #f44336;
-}
-
-.imgcontainer {
-  text-align: center;
-  margin: 24px 0 12px 0;
-}
-
-img.avatar {
-  width: 40%;
-  border-radius: 50%;
-}
-
-.container {
-  padding: 16px;
-}
-
-span.psw {
-  float: right;
-  padding-top: 16px;
-}
-
-.dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  position: center;
-}
-
-.dropdown {
-  position: center;
-  display: inline-block;
-}
-
-.dropdown-content {
-  display: none;
-  position: center;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {background-color: #ddd;}
-
-.dropdown:hover .dropdown-content {display: block;}
-
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.psw {
-     display: block;
-     float: none;
-  }
-  .cancelbtn {
-     width: 100%;
-  }
-}
-</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="detup.js"></script>
 </head>
 <body>
 
-<h2>Welcome!</h2>
+<h2>Let's get Cooking!</h2>
   <div class="container" style="background-color:#f1f1f1">
-    <button type="button" class="btn">Find New Recipe</button>
-    <button type="button" class="btn">Add Recipe</button>
-    <button type="button" class="btn">Get Recipe from Ingredits</button>
-    <button type="button" class="btn">Your Recipes</button>
-    <button type="button" class="btn">Random Recipe</button>
+    <input id = "search"></input> <button id="buttonsearch"> Search</button>
+    <button type="button" class="btn" id="NewRecipe">Find New Recipe</button>
+    <button type="button" class="btn" id="RecipeFromIngredients">Get Recipe from Ingredients</button> 
+    <button type="button" class="btn" id="RandomRecipe">Random Recipe</button>
 
     <div class="dropdown">
     <button class="dropbtn">Cuisines</button>
@@ -148,7 +45,147 @@ span.psw {
         <a href="#">Vietnames</a>
       </div>
     </div>
-
   </div>
+  
+  <div id="recipeContainer"> </div>
+  <a href="" id="sourceLink"></a>
+  
+  <script>
+
+var id; // recipe id
+var mashapeKey = '2601e4f502e84fcf89b7b4b3dc7a142f';
+$(document).ready(function(){
+  var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search?number=10&offset=0&type=main%20course&query=" + $("#search").val(),
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+		"x-rapidapi-key": "79f923e1bdmsh7538b39e153a411p1cef6djsnc5a5cf09d5b3"
+	  }
+  }
+
+  $("#buttonsearch").click(function(){
+    $.ajax(settings).done(function (response) {
+      $.each(response, function(index, value){ 
+        div = document.createElement('div');
+            div.id = "Recipe" + idGraph.toString();
+            div.style = "height: 300px; width: 100%;";
+            div.class = '';
+
+        $("#recipeContainer").append(div);
+      });
+    }); 
+  });
+});
+
+  </script>
 </body>
+
+
+<style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  form {border: 3px solid #f1f1f1;}
+  
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+  .btn{
+    padding: 10px 18px;
+    background-color: #f44336;
+  }
+  
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+  
+  img.avatar {
+    width: 40%;
+    border-radius: 50%;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+  
+  span.psw {
+    float: right;
+    padding-top: 16px;
+  }
+  
+  .dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    position: center;
+  }
+  
+  .dropdown {
+    position: center;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: center;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+  
+  /* Change styles for span and cancel button on extra small screens */
+  @media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+  }
+  </style>
 </html>

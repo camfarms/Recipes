@@ -7,7 +7,6 @@ Created on Tue Apr 21 18:55:03 2020
 import spoonacular as sp
 api = sp.API("your_api_key_here")
 
-
 #id is a number
 def getrecipeinformation(ID):
     recipeInfo = api.analyze_recipe_instructions(ID, False)
