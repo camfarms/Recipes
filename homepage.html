@@ -47,12 +47,12 @@
     </div>
   </div>
   
-  <div id="recipeContainer"> </div>
+  <div id="recipeContainer" class="grid-container"></div>
   <a href="" id="sourceLink"></a>
   
   <script>
 
-var APIKEY = '';
+var APIKEY = 'd7e8b2ddde5249d1916c52a38e541611';
 $(document).ready(function () {
   function getsource(id){
       $.ajax({
@@ -67,16 +67,55 @@ $(document).ready(function () {
   }
     $("#buttonsearch").click(function(){
         alert("got to the method");
-        var z = $("#search").val();
         $.ajax({
             type: "GET",
-            url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=1&query="+ $("#search").val(),
+            url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=8&query="+ $("#search").val(),
             success: function(res){
                 alert("got result");
-                document.getElementById("recipeContainer").innerHTML = "<h1>"+ res.results[0].title + "</h1><br><img src='" + res.baseUri + res.results[0].image + "'/> <br> ready in " + res.results[0].readyInMinutes + " minutes";
-                getsource(res.results[0].id);
+                document.getElementById("recipeContainer").innerHTML = 
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[0].title + 
+                    "</h1><br><a href='" + res.results[0].sourceUrl + "'><img src='" + res.baseUri + res.results[0].image + 
+                    "'/></a> <br> ready in " + res.results[0].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[1].title + 
+                    "</h1><br><a href='" + res.results[1].sourceUrl + "'><img src='" + res.baseUri + res.results[1].image + 
+                    "'/> <br> ready in " + res.results[1].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[2].title + 
+                    "</h1><br><a href='" + res.results[2].sourceUrl + "'><img src='" + res.baseUri + res.results[2].image + 
+                    "'/> <br> ready in " + res.results[2].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[3].title + 
+                    "</h1><br><a href='" + res.results[3].sourceUrl + "'><img src='" + res.baseUri + res.results[3].image + 
+                    "'/> <br> ready in " + res.results[3].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[4].title + 
+                    "</h1><br><a href='" + res.results[4].sourceUrl + "'><img src='" + res.baseUri + res.results[4].image + 
+                    "'/> <br> ready in " + res.results[4].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[5].title + 
+                    "</h1><br><a href='" + res.results[5].sourceUrl + "'><img src='" + res.baseUri + res.results[5].image + 
+                    "'/> <br> ready in " + res.results[5].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[6].title + 
+                    "</h1><br><a href='" + res.results[6].sourceUrl + "'><img src='" + res.baseUri + res.results[6].image + 
+                    "'/> <br> ready in " + res.results[6].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[7].title + 
+                    "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
+                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                  " minutes</div>";
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
+          alert("failed");
           $("#error").html(jqXHr.responseText);
         });
       });
@@ -189,5 +228,19 @@ $(document).ready(function () {
        width: 100%;
     }
   }
+
+.grid-container {
+  display: grid;
+  grid-gap: 50px 100px;
+  grid-template-columns: auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
   </style>
 </html>
