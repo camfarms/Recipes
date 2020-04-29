@@ -15,38 +15,35 @@
     <input type="text" id = "search2" placeholder="put ingredients wanted in format ingredient1,+ingredient2,+ingredi..."></input> 
     <button type="button" class="btn" id="RecipeFromIngredients">Get Recipe from Ingredients</button> 
 
-    <div class="dropdown">
-    <button class="dropbtn">Cuisines</button>
-      <div class="dropdown-content">
-        <a href="#">African</a>
-        <a href="#">American</a>
-        <a href="#">British</a>
-        <a href="#">Cajun</a>
-        <a href="#">Caribbean</a>
-        <a href="#">Chinese</a>
-        <a href="#">Eastern</a>
-        <a href="#">European</a>
-        <a href="#">French</a>
-        <a href="#">German</a>
-        <a href="#">Greek</a>
-        <a href="#">Indian</a>
-        <a href="#">Irish</a>
-        <a href="#">Italian</a>
-        <a href="#">Japanese</a>
-        <a href="#">Jewish</a>
-        <a href="#">Korean</a>
-        <a href="#">Latin American</a>
-        <a href="#">Mediterranean</a>
-        <a href="#">Mexican</a>
-        <a href="#">Middle Eastern</a>
-        <a href="#">Nordic</a>
-        <a href="#">Southern</a>
-        <a href="#">Spanish</a>
-        <a href="#">Thai</a>
-        <a href="#">Vietnames</a>
-      </div>
-    </div>
-  </div>
+    <select id="cuisineContent" onchange="getCuisine();">
+        <option value="Africa">Africa</option>
+        <option value="American">American</option>
+        <option value="British">British</option>
+        <option value="Cajun">Cajun</option>
+        <option value="Carribean">Carribean</option>
+        <option value="Chinese">Chinese</option>
+        <option value="Eastern">Eastern</option>
+        <option value="European">European</option>
+        <option value="French">French</option>
+        <option value="German">German</option>
+        <option value="Indian">Indian</option>
+        <option value="Irish">Irish</option>
+        <option value="Italian">Italian</option>
+        <option value="Japanese">Japanese</option>
+        <option value="Jewish">Jewish</option>
+        <option value="Korean">Korean</option>
+        <option value="Latin American">Latin American</option>
+        <option value="Mediterranean">Mediterranean</option>
+        <option value="Mexican">Mexican</option>
+        <option value="Middle Eastern">Middle Eastern</option>
+        <option value="Nordic">Nordic</option>
+        <option value="Southern">Southern</option>
+        <option value="Spanish">Spanish</option>
+        <option value="Thai">Thai</option>
+        <option value="Vietnamese">Vietnamese</option>
+    </select>
+    <button type="button" id="cuisine">Search By Cuisine</button> 
+
   
   <div id="recipeContainer" class="grid-container"></div>
   <div id="error"></div>
@@ -54,7 +51,7 @@
 
   <script>
 
-var APIKEY = 'd7e8b2ddde5249d1916c52a38e541611';
+var APIKEY = '';
 $(document).ready(function () {
   function getsource(id){
       $.ajax({
@@ -117,6 +114,64 @@ $(document).ready(function () {
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
           alert("failed");
+          $("#error").html(jqXHr.responseText);
+        });
+      });
+      $("#cuisine").click(function(){
+        alert("We are selecting a cuisine")
+        $.ajax({
+          type:"GET",
+          url: "https://api.spoonacular.com/recipes/search?apiKey=" + APIKEY + "&cuisine=" + $("#cuisineContent option:selected").text()+ "&number=9",
+          success: function(res){
+            alert("We got the results bud");
+            document.getElementById("recipeContainer").innerHTML = 
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[0].title + 
+                    "</h1><br><a href='" + res.results[0].sourceUrl + "'><img src='" + res.baseUri + res.results[0].image + 
+                    "'/></a> <br> ready in " + res.results[0].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[1].title + 
+                    "</h1><br><a href='" + res.results[1].sourceUrl + "'><img src='" + res.baseUri + res.results[1].image + 
+                    "'/> <br> ready in " + res.results[1].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[2].title + 
+                    "</h1><br><a href='" + res.results[2].sourceUrl + "'><img src='" + res.baseUri + res.results[2].image + 
+                    "'/> <br> ready in " + res.results[2].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[3].title + 
+                    "</h1><br><a href='" + res.results[3].sourceUrl + "'><img src='" + res.baseUri + res.results[3].image + 
+                    "'/> <br> ready in " + res.results[3].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[4].title + 
+                    "</h1><br><a href='" + res.results[4].sourceUrl + "'><img src='" + res.baseUri + res.results[4].image + 
+                    "'/> <br> ready in " + res.results[4].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[5].title + 
+                    "</h1><br><a href='" + res.results[5].sourceUrl + "'><img src='" + res.baseUri + res.results[5].image + 
+                    "'/> <br> ready in " + res.results[5].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[6].title + 
+                    "</h1><br><a href='" + res.results[6].sourceUrl + "'><img src='" + res.baseUri + res.results[6].image + 
+                    "'/> <br> ready in " + res.results[6].readyInMinutes + 
+                  " minutes</div>" +
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[7].title + 
+                    "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
+                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                  " minutes</div>"
+                  "<div class='grid-item'>" + 
+                    "<h1>"+ res.results[8].title + 
+                    "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
+                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                  " minutes</div>";
+            }
+        }).fail(function(jqXHr, textStatus, errorThrown){
           $("#error").html(jqXHr.responseText);
         });
       });
