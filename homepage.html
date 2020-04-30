@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<h2>Let's get Cooking!</h2>
+<h2>Quarantine Cooking</h2>
   <div class="container" style="background-color:#f1f1f1">
     <input type="text" id = "search" placeholder="enter keywords to find recipe"></input> 
     <button type="button" class="btn" id="buttonsearch">Search Recipes</button>
@@ -68,7 +68,6 @@ $(document).ready(function () {
             type: "GET",
             url: "https://api.spoonacular.com/recipes/search?apiKey="+ APIKEY + "&number=8&query="+ $("#search").val(),
             success: function(res){
-              document.getElementById("recipeContainer").innerHTML="";
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -78,37 +77,37 @@ $(document).ready(function () {
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[1].title + 
                     "</h1><br><a href='" + res.results[1].sourceUrl + "'><img src='" + res.baseUri + res.results[1].image + 
-                    "'/> <br> ready in " + res.results[1].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[1].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[2].title + 
                     "</h1><br><a href='" + res.results[2].sourceUrl + "'><img src='" + res.baseUri + res.results[2].image + 
-                    "'/> <br> ready in " + res.results[2].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[2].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[3].title + 
                     "</h1><br><a href='" + res.results[3].sourceUrl + "'><img src='" + res.baseUri + res.results[3].image + 
-                    "'/> <br> ready in " + res.results[3].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[3].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[4].title + 
                     "</h1><br><a href='" + res.results[4].sourceUrl + "'><img src='" + res.baseUri + res.results[4].image + 
-                    "'/> <br> ready in " + res.results[4].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[4].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[5].title + 
                     "</h1><br><a href='" + res.results[5].sourceUrl + "'><img src='" + res.baseUri + res.results[5].image + 
-                    "'/> <br> ready in " + res.results[5].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[5].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[6].title + 
                     "</h1><br><a href='" + res.results[6].sourceUrl + "'><img src='" + res.baseUri + res.results[6].image + 
-                    "'/> <br> ready in " + res.results[6].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[6].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[7].title + 
                     "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
-                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[7].readyInMinutes + 
                   " minutes</div>";
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
@@ -121,7 +120,6 @@ $(document).ready(function () {
           type:"GET",
           url: "https://api.spoonacular.com/recipes/search?apiKey=" + APIKEY + "&cuisine=" + $("#cuisineContent option:selected").text()+ "&number=8",
           success: function(res){
-            document.getElementById("recipeContainer").innerHTML="";
             document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[0].title + 
@@ -131,42 +129,42 @@ $(document).ready(function () {
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[1].title + 
                     "</h1><br><a href='" + res.results[1].sourceUrl + "'><img src='" + res.baseUri + res.results[1].image + 
-                    "'/> <br> ready in " + res.results[1].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[1].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[2].title + 
                     "</h1><br><a href='" + res.results[2].sourceUrl + "'><img src='" + res.baseUri + res.results[2].image + 
-                    "'/> <br> ready in " + res.results[2].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[2].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[3].title + 
                     "</h1><br><a href='" + res.results[3].sourceUrl + "'><img src='" + res.baseUri + res.results[3].image + 
-                    "'/> <br> ready in " + res.results[3].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[3].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[4].title + 
                     "</h1><br><a href='" + res.results[4].sourceUrl + "'><img src='" + res.baseUri + res.results[4].image + 
-                    "'/> <br> ready in " + res.results[4].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[4].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[5].title + 
                     "</h1><br><a href='" + res.results[5].sourceUrl + "'><img src='" + res.baseUri + res.results[5].image + 
-                    "'/> <br> ready in " + res.results[5].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[5].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[6].title + 
                     "</h1><br><a href='" + res.results[6].sourceUrl + "'><img src='" + res.baseUri + res.results[6].image + 
-                    "'/> <br> ready in " + res.results[6].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[6].readyInMinutes + 
                   " minutes</div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[7].title + 
                     "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
-                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[7].readyInMinutes + 
                   " minutes</div>"
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.results[8].title + 
                     "</h1><br><a href='" + res.results[7].sourceUrl + "'><img src='" + res.baseUri + res.results[7].image + 
-                    "'/> <br> ready in " + res.results[7].readyInMinutes + 
+                    "'/></a><br> ready in " + res.results[7].readyInMinutes + 
                   " minutes</div>";
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
@@ -179,47 +177,11 @@ $(document).ready(function () {
             type: "GET",
             url: "https://api.spoonacular.com/recipes/random?apiKey=" + APIKEY + "&number=1",
             success: function(res){
-                document.getElementById("recipeContainer").innerHTML="";
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res.recipes[0].title + 
-                    "</h1><br><a href='" + res.recipes[0].sourceUrl + "'><img src='" + res.baseUri + res.recipes[0].image + 
-                    "'/></a> <br> ready in " + res.recipes[0].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[1].title + 
-                    "</h1><br><a href='" + res.recipes[1].sourceUrl + "'><img src='" + res.baseUri + res.recipes[1].image + 
-                    "'/> <br> ready in " + res.recipes[1].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[2].title + 
-                    "</h1><br><a href='" + res.recipes[2].sourceUrl + "'><img src='" + res.baseUri + res.recipes[2].image + 
-                    "'/> <br> ready in " + res.recipes[2].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[3].title + 
-                    "</h1><br><a href='" + res.recipes[3].sourceUrl + "'><img src='" + res.baseUri + res.recipes[3].image + 
-                    "'/> <br> ready in " + res.recipes[3].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[4].title + 
-                    "</h1><br><a href='" + res.recipes[4].sourceUrl + "'><img src='" + res.baseUri + res.recipes[4].image + 
-                    "'/> <br> ready in " + res.recipes[4].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[5].title + 
-                    "</h1><br><a href='" + res.recipes[5].sourceUrl + "'><img src='" + res.baseUri + res.recipes[5].image + 
-                    "'/> <br> ready in " + res.recipes[5].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[6].title + 
-                    "</h1><br><a href='" + res.recipes[6].sourceUrl + "'><img src='" + res.baseUri + res.recipes[6].image + 
-                    "'/> <br> ready in " + res.recipes[6].readyInMinutes + 
-                  " minutes</div>" +
-                  "<div class='grid-item'>" + 
-                    "<h1>"+ res.recipes[7].title + 
-                    "</h1><br><a href='" + res.recipes[7].sourceUrl + "'><img src='" + res.baseUri + res.recipes[7].image + 
-                    "'/> <br> ready in " + res.recipes[7].readyInMinutes + 
+                    "</h1><br><a href='" + res.recipes[0].spoonacularSourceUrl + "'><img src='" + res.recipes[0].image + 
+                    "'/></a><br> ready in " + res.recipes[0].readyInMinutes + 
                   " minutes</div>";
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
@@ -230,46 +192,42 @@ $(document).ready(function () {
       $("#RecipeFromIngredients").click(function(){
         $.ajax({
             type: "GET",
-            url: "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + APIKEY + "&ingredients=" + $("#search2").val() +"&number=1",
+            url: "https://api.spoonacular.com/recipes/findByIngredients?apiKey=" + APIKEY + "&ingredients=" + $("#search2").val() +"&number=8",
             success: function(res){
-                document.getElementById("recipeContainer").innerHTML="";
+
                 document.getElementById("recipeContainer").innerHTML = 
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[0].title + 
-                    "</h1><br><a href='" + res[0].sourceUrl + "'><img src='" + res.baseUri + res[0].image + 
-                    "'/></a></div>" +
+                    "</h1><br><img src='" + res[0].image + 
+                    "'/></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[1].title + 
-                    "</h1><br><a href='" + res[1].sourceUrl + "'><img src='" + res.baseUri + res[1].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[1].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[2].title + 
-                    "</h1><br><a href='" + res[2].sourceUrl + "'><img src='" + res.baseUri + res[2].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[2].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[3].title + 
-                    "</h1><br><a href='" + res[3].sourceUrl + "'><img src='" + res.baseUri + res[3].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[3].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[4].title + 
-                    "</h1><br><a href='" + res[4].sourceUrl + "'><img src='" + res.baseUri + res[4].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[4].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[5].title + 
-                    "</h1><br><a href='" + res[5].sourceUrl + "'><img src='" + res.baseUri + res[5].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[5].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[6].title + 
-                    "</h1><br><a href='" + res[6].sourceUrl + "'><img src='" + res.baseUri + res[6].image + 
-                    "'/> <br></div>" +
+                    "</h1><br><img src='" + res[6].image + 
+                    "'/><br></div>" +
                   "<div class='grid-item'>" + 
                     "<h1>"+ res[7].title + 
-                    "</h1><br><a href='" + res[7].sourceUrl + "'><img src='" + res.baseUri + res[7].image + 
-                    "'/> <br></div>";
-                // div = document.createElement('div');
-                // div.style = "height: 300px;";
-                // div.innerHTML = "<h1>"+ res[0].title + "</h1><br><img src='" + res[0].image + "'/> <br> Missed " + res[0].missedIngredientCount + " ingredients listed";
-                // $("#recipeContainer").append(div);
+                    "</h1><br><img src='" + res[7].image + 
+                    "'/><br></div>";
             }
         }).fail(function(jqXHr, textStatus, errorThrown){
           $("#error").html(jqXHr.responseText);
