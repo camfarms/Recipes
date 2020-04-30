@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="detup.js"></script>
+</head>
+<body>
+    <button type="button" id="NewRecipe">Find New Recipe</button>
+    <div id="recipeContainer"  class="grid-container"></div>
+    <div id="error"></div>
+<script>
+var APIKEY = 'd7e8b2ddde5249d1916c52a38e541611';
+$(document).ready(function () {
+    $("#NewRecipe").click(function(){
+        $.ajax({
+            type: "GET",
+            url: "https://api.spoonacular.com/recipes/random?apiKey=" + APIKEY + "&number=1",
+            success: function(res){
+                document.getElementById("recipeContainer").innerHTML="";
+                document.getElementById("recipeContainer").innerHTML = 
+                "<div class='grid-item'>" + 
+                    "<h1>"+ res.recipes[0].title + 
+                    "</h1><br><a href='" + res.recipes[0].spoonacularSourceUrl + "'><img src='" + res.recipes[0].image + 
+                    "'/></a><br> ready in " + res.recipes[0].readyInMinutes + 
+                  " minutes</div>";
+                }
+        }).fail(function(jqXHr, textStatus, errorThrown){
+            $("#error").html(jqXHr.responseText);
+        });
+    });
+});
+</script>
+</body>
+</html>
